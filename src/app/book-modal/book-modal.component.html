@@ -1,0 +1,12 @@
+
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">{{book.title}}</h4>
+  
+  </div>
+  <div class="modal-body">
+    <p>{{book|json}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel')">retour</button>
+    <button type="button" class="btn btn-success" (click)="activeModal.close('ok')">Ajouter au panier</button>
+  </div>

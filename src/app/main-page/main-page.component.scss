@@ -1,0 +1,26 @@
+
+ul#bookList{
+
+    list-style-type: none;
+    padding: 30px;
+
+li.bookpres{
+    height: 200px;
+    margin: 60px 40px;
+    text-align: justify;
+
+    display: block;
+    background: darkkhaki;
+
+    div.bookText{
+padding : 20px
+    }
+
+    img{
+        height: inherit;
+        float: left;
+    }
+}
+
+
+}
