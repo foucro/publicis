@@ -1,7 +1,8 @@
 export interface Book {
-    "isbn": string;
-    "title": string;
-    "price": number,
-    "cover":  string;
-    "synopsis":  string[];
+  nb: number;
+  isbn: string;
+  title: string;
+  price: number;
+  cover: string;
+  synopsis: string[];
 }

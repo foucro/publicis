@@ -1,10 +1,43 @@
+#items {
+  input {
+    float: left;
+  }
+  h1{
+      text-align: center;
+  }
+  div#reset {    font-size: 2.3em;
+    margin-top: -7px;
+    margin-left: -41px;
+    color: darkred;
+    padding: 0;
+    border: none;
+    background: white;
+    height: 0px;
+    display: inline-block;
+  }
+  .searchBar{
+      width: 50%;
+      margin: auto;
+      margin-top: 55px;
+  }
 
-ul#bookList{
+.searchMessage{
+    margin-top: 20px;
+    span{
+        font-weight: bold;
+    }
+}
 
-    list-style-type: none;
-    padding: 30px;
 
-li.bookpres{
+}
+
+
+ul#bookList {
+  list-style-type: none;
+  padding: 10px 30px;
+
+
+  li.bookpres {
     height: 200px;
     margin: 60px 40px;
     text-align: justify;
@@ -12,15 +45,22 @@ li.bookpres{
     display: block;
     background: darkkhaki;
 
-    div.bookText{
-padding : 20px
+    div.bookText {
+      padding: 20px;
     }
 
-    img{
-        height: inherit;
-        float: left;
+    img {
+      height: inherit;
+      float: left;
     }
+  }
 }
 
+
+#miniCart{
+
+    position: fixed;
+    right: 0;
+    top: 140px;
 
 }

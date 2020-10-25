@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Book } from '../model/book';
 
 @Component({
   selector: 'app-small-cart',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./small-cart.component.scss']
 })
 export class SmallCartComponent implements OnInit {
+
+@Input() booksInCart: Book[];
+
 
   constructor() { }
 

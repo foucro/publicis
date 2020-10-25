@@ -1,0 +1,22 @@
+.modal-body {
+  display: flex;
+  flex-direction: row;
+   img {
+    height: fit-content;
+    max-height: 600px;
+    margin: 50px;
+  }
+
+  .bookText {
+    text-align: justify;
+
+    padding-right: 20px;
+    margin: auto;
+  }
+
+  .price {
+    font-size: 2em;
+
+    text-align: right;
+  }
+}

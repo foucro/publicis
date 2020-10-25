@@ -1,1 +1,9 @@
-<p>small-cart works!</p>
+
+    <h3>Mon Panier</h3>
+    <div>
+        <ul >
+            <li *ngFor="let book of booksInCart ">
+              {{book.nb}} x HP{{book.title| slice:12:50}}
+            </li>
+        </ul>
+    </div>

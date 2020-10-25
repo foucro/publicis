@@ -1,25 +1,44 @@
-<h1> A la une</h1>
-<input [(ngModel)]="searchTxt" type="text" 
-class="form-control"
-placeholder="Rechercher un livre..." 
- (ngModelChange)="bookfilter()">
-<div class="searchMessage">Resultats pour la recherche "<span>{{searchTxt }}</span>"</div>
-<ul id="bookList"> 
-    
-    <li class="bookpres" *ngFor="let book of booksdisplay">
-        <img  class="clickable"  src="{{book.cover}}" alt="{{book.title}} cover" (click)="openModal(book.isbn)">
-
-        <div class="bookText">
-            <div class="clickable" (click)="openModal(book.isbn)">
-        <h2>{{book.title}}</h2>
-        <p>
-            {{book.synopsis.toString() |slice:0:270}}...
-        </p>
+<div id="items">
+  <h1>A la une</h1>
+  <div class="searchBar">
+    <input
+      [(ngModel)]="searchTxt"
+      type="text"
+      class="form-control"
+      placeholder="Rechercher un titre de livre..."
+      (ngModelChange)="typesearch$.next($event)"
+    />
+    <div *ngIf="searchTxt" id="reset" class="clickable" (click)="clearSearch()">
+      &otimes;
     </div>
-<p> {{book.price | currency}}</p>
+
+    <div *ngIf="searchTxt" class="searchMessage">
+      Resultats pour la recherche "<span>{{ searchTxt }}</span
+      >"
+    </div>
+  </div>
+
+  <ul id="bookList">
+    <li class="bookpres" *ngFor="let book of booksdisplay">
+      <img
+        class="clickable"
+        src="{{ book.cover }}"
+        alt="{{ book.title }} cover"
+        (click)="openModal(book.isbn)"
+      />
+
+      <div class="bookText">
+        <div class="clickable" (click)="openModal(book)">
+          <h2>{{ book.title }}</h2>
+          <p>{{ book.synopsis.toString() | slice: 0:270 }}...</p>
+        </div>
+        <p>{{ book.price | currency }}</p>
+        <button (click)="addToCart(book)">Ajouter au panier</button>
+      </div>
+    </li>
+  </ul>
 </div>
 
-</li>
-
-
-</ul>
+<aside id="miniCart">
+    <app-small-cart [booksInCart]="booksInCart"></app-small-cart>
+</aside>

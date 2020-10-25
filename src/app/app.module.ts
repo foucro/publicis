@@ -4,6 +4,8 @@ import { NgModule, DEFAULT_CURRENCY_CODE } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 import { AppComponent } from './app.component';
@@ -22,7 +24,8 @@ import { BookModalComponent } from './book-modal/book-modal.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [{provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'}],
   bootstrap: [AppComponent]
