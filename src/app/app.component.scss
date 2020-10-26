@@ -1,11 +1,38 @@
 #banner{
-    height: 80px;
-    background-color: aquamarine;
+    height: 230px;
+
+    text-shadow: 0 0 15px black;
+    
+
+    background: url('../assets/pictures/banner3.png') no-repeat;
+
+
+    background-size: cover;
+
+    background-position-y: -10px;
+    background-position: center;
+    font-family: hpfont;
+
+    text-align: center;
+    font-size: 10rem;
+    color: darkred;
+
 }
 
 #page{
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    background-color: brown;
+}
+
+#mainMenu{
+
+   // position: fixed;top: 0; right: 0;left: 0;
+ 
+    font-size: 2rem;
+    background-color: lightgrey;
+    ul{
+        display: flex;
+        justify-content: space-evenly;
+    }
 }

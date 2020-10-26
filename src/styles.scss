@@ -3,6 +3,11 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
+@font-face {
+    font-family: "hpfont";
+    src: url("./assets/fonts/HARRYP__.TTF");
+   }
+
 .clickable{
     cursor: pointer;
 }
@@ -15,4 +20,13 @@ ul{
     list-style-type: none;
     padding:0;
     margin:0;
+}
+
+body{
+
+    background: url('./assets/pictures/stars.jpg') no-repeat;
+
+
+    background-size: contain;
+    background-repeat: repeat-y;
 }

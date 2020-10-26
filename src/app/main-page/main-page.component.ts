@@ -29,7 +29,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   public addToCart(book: Book) {
     const i = this.booksInCart.findIndex((x) => x == book);
-    console.info(i);
     if (-1 === i) {
       book.nb = 1;
       this.booksInCart.push(book);
@@ -38,10 +37,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * 
-   * @param id 
-   */
+  
   public openModal(book: Book) {
     const modal = this.modalServ.open(BookModalComponent, {
       scrollable: true,
@@ -50,6 +46,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
     modal.componentInstance.book = book;
 
+    //fermeture de la modal
     modal.result.then(
       (x: Book) => this.addToCart(x),
       (err) => console.info('modal close', err)
@@ -80,6 +77,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
                 ))
       );
 
+    //récupération de tous les livres
     this.bookServ
       .getBooks()
       .subscribe((books: Book[]) => (this.books = this.booksdisplay = books));

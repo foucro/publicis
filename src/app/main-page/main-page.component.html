@@ -19,12 +19,12 @@
   </div>
 
   <ul id="bookList">
-    <li class="bookpres" *ngFor="let book of booksdisplay">
+    <li class="bookpres" *ngFor="let book of booksdisplay; index as i;" style="--i:{{i+1}}">
       <img
         class="clickable"
         src="{{ book.cover }}"
         alt="{{ book.title }} cover"
-        (click)="openModal(book.isbn)"
+        (click)="openModal(book)"
       />
 
       <div class="bookText">
@@ -32,9 +32,11 @@
           <h2>{{ book.title }}</h2>
           <p>{{ book.synopsis.toString() | slice: 0:270 }}...</p>
         </div>
+        <div class="descFoot">
         <p>{{ book.price | currency }}</p>
-        <button (click)="addToCart(book)">Ajouter au panier</button>
+        <button class="btn " (click)="addToCart(book)">Ajouter au panier</button>
       </div>
+    </div>
     </li>
   </ul>
 </div>

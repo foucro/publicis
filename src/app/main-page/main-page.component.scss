@@ -2,10 +2,11 @@
   input {
     float: left;
   }
-  h1{
-      text-align: center;
+  h1 {
+    text-align: center;
   }
-  div#reset {    font-size: 2.3em;
+  div#reset {
+    font-size: 2.3em;
     margin-top: -7px;
     margin-left: -41px;
     color: darkred;
@@ -15,52 +16,122 @@
     height: 0px;
     display: inline-block;
   }
-  .searchBar{
-      width: 50%;
-      margin: auto;
-      margin-top: 55px;
+  .searchBar {
+    width: 50%;
+    margin: auto;
+    margin-top: 55px;
   }
 
-.searchMessage{
+  .searchMessage {
     margin-top: 20px;
-    span{
-        font-weight: bold;
+    span {
+      font-weight: bold;
     }
+  }
+}
+
+@keyframes magic1 {
+  0% {
+    transform: translate(calc(var(--i) * -200px),calc(var(--i) * -200px)) rotateZ(calc(var(--i) * 100deg));
+  }
+  100% {
+    transform: translate(0,0) rotateZ(0deg);
+  }
 }
 
 
+@keyframes magic2 {
+  0% {
+    transform: translate(calc(var(--i) * 200px),800px) rotateZ(-100deg);
+  }
+  100% {
+    transform: translate(0,0) rotateZ(0deg);
+  }
 }
+
 
 
 ul#bookList {
   list-style-type: none;
   padding: 10px 30px;
 
-
   li.bookpres {
     height: 200px;
     margin: 60px 40px;
     text-align: justify;
-
-    display: block;
+    box-shadow: 0px 0px 12px 7px white;
+    display: flex;
     background: darkkhaki;
+    &:nth-child(odd){
+    animation:  magic1 5s ;
+    }
+    &:nth-child(even){
+      
+    animation: magic2 5s ;
+    }
 
     div.bookText {
+      h2{
+        font-family: serif;
+      }
       padding: 20px;
+      .descFoot {
+        display: flex;
+
+        justify-content: space-around;
+        p {
+          font-size: 1.7rem;
+        }
+        .btn {
+          display: block;
+          height: 2.5rem;
+          margin-left: 9rem;
+          background-color: darkblue;
+          color: white;
+      
+        }
+      }
     }
 
     img {
       height: inherit;
-      float: left;
+      &:hover {
+        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+      }
     }
   }
 }
 
+#miniCart {
+  position: fixed;
+  right: 0;
+  top: 140px;
 
-#miniCart{
+  width: 220px;
+  text-align: center;
+  background-color: cadetblue;
+}
 
-    position: fixed;
-    right: 0;
-    top: 140px;
 
+
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
