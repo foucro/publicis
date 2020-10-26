@@ -62,10 +62,10 @@ ul#bookList {
     box-shadow: 0px 0px 12px 7px white;
     display: flex;
     background: darkkhaki;
-    &:nth-child(odd){
+    &.firstime:nth-child(odd){
     animation:  magic1 5s ;
     }
-    &:nth-child(even){
+    &.firstime:nth-child(even){
       
     animation: magic2 5s ;
     }

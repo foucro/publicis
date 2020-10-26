@@ -18,8 +18,8 @@
     </div>
   </div>
 
-  <ul id="bookList">
-    <li class="bookpres" *ngFor="let book of booksdisplay; index as i;" style="--i:{{i+1}}">
+  <ul id="bookList">{{from}}
+    <li class="bookpres" [ngClass]="{'firstime':from==1}" *ngFor="let book of booksdisplay; index as i;" style="--i:{{i+1}}">
       <img
         class="clickable"
         src="{{ book.cover }}"

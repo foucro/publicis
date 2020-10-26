@@ -12,13 +12,15 @@ import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { SmallCartComponent } from './small-cart/small-cart.component';
 import { BookModalComponent } from './book-modal/book-modal.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     SmallCartComponent,
-    BookModalComponent
+    BookModalComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

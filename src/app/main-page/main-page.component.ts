@@ -4,6 +4,8 @@ import { BookModalComponent } from '../book-modal/book-modal.component';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
+import { Location } from '@angular/common';
+
 import { BookService } from '../service/book.service';
 import { Book } from '../model/book';
 
@@ -23,9 +25,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
   searchTxt: string = '';
   //Observe les modifications du champ de rechch
   typesearch$ = new Subject<string>();
+  from: number;
 
 
-  constructor(private modalServ: NgbModal, private bookServ: BookService) {}
+  constructor(private modalServ: NgbModal,private location:Location, private bookServ: BookService) {}
 
   public addToCart(book: Book) {
     const i = this.booksInCart.findIndex((x) => x == book);
@@ -35,6 +38,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
     } else {
       this.booksInCart[i].nb++;
     }
+
+    this.bookServ.saveCart(this.booksInCart);
+
   }
 
   
@@ -63,6 +69,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     //Filtre lié a la recherche
     this.typesearch$
       .pipe(debounceTime(200), distinctUntilChanged())
@@ -77,9 +84,16 @@ export class MainPageComponent implements OnInit, OnDestroy {
                 ))
       );
 
+
+    this.from = this.location.getState()['navigationId'];
+
     //récupération de tous les livres
     this.bookServ
       .getBooks()
       .subscribe((books: Book[]) => (this.books = this.booksdisplay = books));
+
+      this.booksInCart = this.bookServ.getBooksInCart();
   }
+
+  
 }
