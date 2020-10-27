@@ -1,32 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 @font-face {
-    font-family: "hpfont";
-    src: url("./assets/fonts/HARRYP__.TTF");
-   }
-
-.clickable{
-    cursor: pointer;
+  font-family: "hpfont";
+  src: url("./assets/fonts/HARRYP__.TTF");
 }
 
-p{
-    text-indent: 2em;
+.clickable {
+  cursor: pointer;
 }
 
-ul{
-    list-style-type: none;
-    padding:0;
-    margin:0;
+p {
+  text-indent: 2em;
 }
 
-body{
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
 
-    background: url('./assets/pictures/stars.jpg') ;
-
-
-    background-size: contain;
-    background-repeat: repeat-y;
+body {
+  background: url("./assets/pictures/stars.jpg");
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: center;
 }

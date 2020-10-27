@@ -1,4 +1,68 @@
-<h1>Mon Panier</h1>
-<h2>Récapitulatif</h2>
+<div id="cartPanel">
+  <h1>Mon Panier</h1>
+  <h2>Récapitulatif</h2>
+  <div class="recap">
 
-<p>cart works!{{promo|json}}</p>
+<iframe *ngIf="showVid"  width="620" 
+src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&muted=1"
+ frameborder="0" allowfullscreen=""></iframe>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Titre</th>
+          <th scope="col">Prix</th>
+          <th scope="col">Quantité</th>
+          <th scope="col">Sous total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of booksInCart; index as i">
+          <td>
+            <img [src]="book.cover" />
+          </td>
+          <td>
+            {{ book.title }}
+          </td>
+          <td>{{ book.price | number |currency}}</td>
+          <td>{{ book.nb | number }}</td>
+          <td>{{ book.price * book.nb | number  |currency}}</td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+            <td colspan="2"></td>
+          <td  colspan="2">sous-total</td>
+          <td>
+            {{ price | number |currency }}
+          </td>
+        </tr>
+        <tr>
+            <td ></td>
+            <td colspan="3"> Bénéficiez de notre Promotions !<br>{{promoMessage}}</td>
+            <td >{{promo?.finalPrice - price |number|currency}}</td>
+        </tr>
+
+        <tr>
+            <td colspan="2"></td>
+            <td  colspan="2">Prix final</td>
+            <td>
+              {{ promo?.finalPrice | number  |currency}}
+            </td>
+          </tr>
+      </tfoot>
+    </table>
+  </div>
+<div id="cartActions">
+    <div class="cancel">
+        
+    <button class="btn btn-danger" OnClick="confirm('oui?')">Vider le Panier</button>
+    </div>
+    <div class="pay">
+        <button class="btn btn-success" (click)="showVid=true">Payer</button>
+        <button class="btn btn-secondary" routerLink="">Continuer mes achats</button>
+ 
+    </div>
+</div>
+</div>

@@ -13,13 +13,17 @@
     </div>
 
     <div *ngIf="searchTxt" class="searchMessage">
-      Resultats pour la recherche "<span>{{ searchTxt }}</span
-      >"
+      Résultats pour la recherche "<span>{{ searchTxt }}</span>"
     </div>
   </div>
 
-  <ul id="bookList">{{from}}
-    <li class="bookpres" [ngClass]="{'firstime':from==1}" *ngFor="let book of booksdisplay; index as i;" style="--i:{{i+1}}">
+  <ul id="bookList">
+    <li
+      class="bookpres"
+      [ngClass]="{ firstime: navId == 1 && anim }"
+      *ngFor="let book of booksdisplay; index as i"
+      style="--i:{{ i + 1 }}"
+    >
       <img
         class="clickable"
         src="{{ book.cover }}"
@@ -33,14 +37,16 @@
           <p>{{ book.synopsis.toString() | slice: 0:270 }}...</p>
         </div>
         <div class="descFoot">
-        <p>{{ book.price | currency }}</p>
-        <button class="btn " (click)="addToCart(book)">Ajouter au panier</button>
+          <p>{{ book.price | currency }}</p>
+          <button class="btn" (click)="addToCart(book)">
+            Ajouter au panier
+          </button>
+        </div>
       </div>
-    </div>
     </li>
   </ul>
 </div>
 
 <aside id="miniCart">
-    <app-small-cart [booksInCart]="booksInCart"></app-small-cart>
+  <app-small-cart [booksInCart]="booksInCart"></app-small-cart>
 </aside>
