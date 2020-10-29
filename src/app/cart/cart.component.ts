@@ -1,7 +1,10 @@
-import { Component, OnInit, DEFAULT_CURRENCY_CODE } from '@angular/core';
-import { BookService,Offer } from '../service/book.service';
+import { Component, OnInit,  } from '@angular/core';
+import { BookService } from '../service/book.service';
+import { Offer } from "../model/Offer";
 import { Book } from '../model/book';
-import { CurrencyPipe } from '@angular/common';
+import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PayModalComponent } from '../pay-modal/pay-modal.component';
 
 @Component({
   selector: 'app-cart',
@@ -9,44 +12,73 @@ import { CurrencyPipe } from '@angular/common';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+  //Promo a appliquer
   promo: Offer;
+  //livres dans le panier
   booksInCart: Book[]
+  //pripromo total avant promo
   price: number;
+  //message epromopliquant la promo
   promoMessage: string = "";
+  //affichage
   showVid = false;
+  easter=false;
+  notifCart$ = new Subject<number>();
 
-  constructor(private bookserv: BookService) { }
+  constructor(private bookserv: BookService,private modalServ: NgbModal) { }
 
   ngOnInit(): void {
     this.booksInCart= this.bookserv.getBooksInCart();
     if (this.booksInCart?.length)
-    this.bookserv.getPromo().subscribe(x=>
-      {this.promo = x;
-        this._setPromoMessage(x)})
+    this.bookserv.getPromo().subscribe(promo=>
+      {this.promo = promo;
+        this._setPromoMessage(promo)})
 
-      this.price = this.booksInCart.map((x) => x.price*x.nb)
+      this.price = this.booksInCart.map((promo) => promo.price*promo.nb)
       .reduce((a, b) => a + b, 0);
 
   }
-  private _setPromoMessage(x: Offer) {
+
+  /**
+   * Définition du message de promotion
+   * 
+   * @param promo Meilleure offre selectionnée
+   */
+  private _setPromoMessage(promo: Offer) {
     let val = '';
-    switch (x.type) {
+    switch (promo.type) {
       case 'percentage':
-       val = `Réduction de ${x.value}%`;
+       val = `Réduction de ${promo.value}%`;
        break
       case 'minus':
     
-    val = `Remise immédiate de €${x.value} `
+    val = `Remise immédiate de €${promo.value} `
        break
       case 'slice':
-       val = `Remise de €${x.value}  par tranche de ${x.sliceValue}`
+       val = `Remise de €${promo.value}  par tranche de ${promo.sliceValue}`
        break;
       default:
-        console.error('wrong offer type :',x.type)
+        console.error('wrong offer type :',promo.type)
         return ;
     }
     this.promoMessage = val;
   };
   
+  public clearCart(){
+    this.booksInCart = [];
+    this.bookserv.clearCart();
+    this.notifCart$.next(0)
+  }
+
+
+  public openPayModal() {
+    const modal = this.modalServ.open(PayModalComponent, {
+      scrollable: false,
+      size: 'lg',
+    });
+
+    modal.componentInstance.price = this.promo.finalPrice;
+
+  }
   
 }

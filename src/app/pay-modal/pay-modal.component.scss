@@ -1,0 +1,43 @@
+.rickroll {
+  height: 0;
+  width: 620px;
+  margin: auto;
+
+  display: block;
+
+  animation: 2s linear 2.5s fadeIn forwards;
+}
+.modal-header h4 {
+  margin: auto;
+  font-family: crete;
+  font-size: 2rem;
+}
+#payForm {
+  animation: 2s ease-in-out 2.5s fadeOut forwards;
+}
+.inputPay {
+  margin: 10px auto;
+  width: 500px;
+  label {
+    width: 200px;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    height: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    height: 510px;
+  }
+}

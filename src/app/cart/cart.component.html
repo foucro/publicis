@@ -1,12 +1,10 @@
 <div id="cartPanel">
-  <h1>Mon Panier</h1>
+  <h1 (click)="easter=true">Mon Panier</h1>
   <h2>Récapitulatif</h2>
   <div class="recap">
 
-<iframe *ngIf="showVid"  width="620" 
-src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&muted=1"
- frameborder="0" allowfullscreen=""></iframe>
-    <table class="table table-striped">
+
+    <table class="table table-striped" *ngIf="booksInCart?.length">
       <thead>
         <tr>
           <th scope="col"></th>
@@ -54,14 +52,19 @@ src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&muted=1"
       </tfoot>
     </table>
   </div>
+  
+ <div class="empty" *ngIf="!booksInCart?.length">
+   Aucun article dans le panier.
+   <img src="../../assets/pictures/vv.gif" class="easter" *ngIf="easter">
+ </div>
 <div id="cartActions">
     <div class="cancel">
         
-    <button class="btn btn-danger" OnClick="confirm('oui?')">Vider le Panier</button>
+    <button *ngIf="booksInCart?.length" class="btn btn-danger" (click)="clearCart()">Vider le Panier</button>
     </div>
     <div class="pay">
-        <button class="btn btn-success" (click)="showVid=true">Payer</button>
-        <button class="btn btn-secondary" routerLink="">Continuer mes achats</button>
+      <button *ngIf="booksInCart?.length" class="btn btn-success" routerLink="./"  fragment="cartActions" (click)="openPayModal()">Payer</button>
+        <button class="btn btn-secondary" routerLink="main" fragment="mainMenu"> Continuer mes achats</button>
  
     </div>
 </div>

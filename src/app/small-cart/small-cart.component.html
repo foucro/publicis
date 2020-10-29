@@ -1,9 +1,12 @@
 
     <h3>Mon Panier</h3>
-    <div>
+    <div *ngIf="booksInCart.length">
         <ul >
             <li *ngFor="let book of booksInCart ">
               {{book.nb}} x HP{{book.title| slice:12:50}}
             </li>
         </ul>
+    </div>
+    <div *ngIf="!booksInCart.length">
+        Panier vide :(
     </div>

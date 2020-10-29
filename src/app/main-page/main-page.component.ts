@@ -1,13 +1,12 @@
-import { Component, OnInit, OnDestroy, AfterViewChecked } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { BookModalComponent } from '../book-modal/book-modal.component';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-
 import { Location } from '@angular/common';
 
 import { BookService } from '../service/book.service';
 import { Book } from '../model/book';
+import { BookModalComponent } from '../book-modal/book-modal.component';
 
 @Component({
   selector: 'app-main-page',
@@ -25,10 +24,13 @@ export class MainPageComponent implements OnInit, OnDestroy {
   searchTxt: string = '';
   //Observe les modifications du champ de rechch
   typesearch$ = new Subject<string>();
+  //la notif menu
+  notifCart$ = new Subject<number>();
 
-  //Pour arreter lanimation
+  //Pour gérer lanimation
   navId: number;
   anim = true;
+  hiddenCart=true
 
 
   constructor(private modalServ: NgbModal,private location:Location, private bookServ: BookService) {}
@@ -43,9 +45,14 @@ export class MainPageComponent implements OnInit, OnDestroy {
     }
 
     this.bookServ.saveCart(this.booksInCart);
+    this.notifCart$.next(this.getCartSize());
 
   }
 
+  private getCartSize(): number{
+    if(!this.booksInCart?.length)return 0;
+    return this.booksInCart.map(x=>x.nb).reduce((a,b)=>a+b)
+  }
   
   public openModal(book: Book) {
     const modal = this.modalServ.open(BookModalComponent, {
@@ -77,13 +84,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.typesearch$
       .pipe(debounceTime(200), distinctUntilChanged())
       .subscribe(
-        (sfilter: string) =>{this.anim=false;
-          (this.booksdisplay =
-            sfilter.length === 0
-              ? this.books
-              : this.books.filter(
-                  (v: Book) =>
-                    v.title.toLowerCase().indexOf(sfilter.toLowerCase()) > -1
+        (sfilter: string) =>{
+          this.anim=false;
+          (this.booksdisplay = sfilter.length === 0 ? 
+            this.books : this.books.filter(
+                  (v: Book) =>  v.title.toLowerCase().indexOf(sfilter.toLowerCase()) > -1
                 ))}
       );
 
@@ -93,9 +98,13 @@ export class MainPageComponent implements OnInit, OnDestroy {
     //récupération de tous les livres
     this.bookServ
       .getBooks()
-      .subscribe((books: Book[]) => (this.books = this.booksdisplay = books));
+      .subscribe((books: Book[]) => 
+        (this.books = this.booksdisplay = books));
 
-      this.booksInCart = this.bookServ.getBooksInCart();
+    this.booksInCart = this.bookServ.getBooksInCart();
+    this.notifCart$.next(this.getCartSize());
+    
+   
   }
 
 }

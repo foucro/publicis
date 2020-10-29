@@ -3,14 +3,15 @@
 
 <nav id="mainMenu">
   <ul>
-    <li ><a [routerLink]="['/']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:
+    <li ><a [routerLink]="['/main']" routerLinkActive="routerActive" [routerLinkActiveOptions]="{exact:
       true}">A la une</a> </li>
-    <li><a >Notre Sélection</a></li>
-    <li><a [routerLink]="['/panier']" routerLinkActive="router-link-active">Mon panier</a></li>
+    <li><a >Sélection</a></li>
+    <li><a [routerLink]="['/panier']" routerLinkActive="routerActive">
+      Mon panier<span [hidden]="nbNotif==0" class="badge badge-dark">{{nbNotif}}</span></a></li>
     <li>A propos</li>
   </ul>
 </nav>
 
 <div id="page">
-  <router-outlet></router-outlet>
+  <router-outlet  (activate)="onActivate($event)"></router-outlet>
 </div>

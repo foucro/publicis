@@ -18,6 +18,9 @@
     color: darkred;
 
 }
+.routerActive{
+    color:olive !important;
+}
 
 #page{
     max-width: 1000px;
@@ -31,8 +34,19 @@
  
     font-size: 2rem;
     background-color: lightgrey;
+    font-family: crete;
     ul{
         display: flex;
         justify-content: space-evenly;
+    }
+    a,a:visited{
+        color: inherit;
+        text-decoration:inherit;
+    }
+    .badge{
+
+    background-color: #374a5d;
+    border-radius: 18px;
+    font-family: auto;
     }
 }

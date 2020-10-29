@@ -1,9 +1,12 @@
 #items {
+  margin: 40px auto;
   input {
     float: left;
   }
   h1 {
     text-align: center;
+    color:white;
+    text-shadow: 0 0 4px white;
   }
   div#reset {
     font-size: 2.3em;
@@ -23,37 +26,23 @@
   }
 
   .searchMessage {
+    color:white;
+    font-size: 1.4rem;
+    color: #f7ca44;
     margin-top: 20px;
-    span {
+    em {
       font-weight: bold;
     }
   }
 }
 
-@keyframes magic1 {
-  0% {
-    transform: translate(calc(var(--i) * -200px),calc(var(--i) * -200px)) rotateZ(calc(var(--i) * 100deg));
-  }
-  100% {
-    transform: translate(0,0) rotateZ(0deg);
-  }
-}
-
-
-@keyframes magic2 {
-  0% {
-    transform: translate(calc(var(--i) * 200px),800px) rotateZ(-100deg);
-  }
-  100% {
-    transform: translate(0,0) rotateZ(0deg);
-  }
-}
 
 
 
 ul#bookList {
   list-style-type: none;
   padding: 10px 30px;
+  clear: both;
 
   li.bookpres {
     height: fit-content;
@@ -61,13 +50,16 @@ ul#bookList {
     text-align: justify;
     box-shadow: 0px 0px 12px 7px white;
     display: flex;
-    background: darkkhaki;
-    &.firstime:nth-child(odd){
-    animation:  magic1 5s ;
+    background: #9a9a3df2;
+    &.firstime:nth-child(odd) .introAnim{
+    animation:  magic1 3.5s ;
     }
-    &.firstime:nth-child(even){
+    &.firstime:nth-child(even) .introAnim {
       
-    animation: magic2 5s ;
+    animation: magic2 4s ;
+    }
+    &:first-child{
+      margin-top:30px;
     }
 
     div.bookText {
@@ -97,10 +89,11 @@ ul#bookList {
 
     img {
       
-    height: 13rem;
+    height: inherit;
+    max-height: 248px;
     margin: auto;
       &:hover {
-        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both ; 
         transform: translate3d(0, 0, 0);
         backface-visibility: hidden;
         perspective: 1000px;
@@ -110,13 +103,32 @@ ul#bookList {
 }
 
 #miniCart {
+  transition: ease-in-out 0.7s;
+
+  &.hidden{
+    right:-220px
+  }
   position: fixed;
   right: 0;
-  top: 140px;
+  padding: 5px;
+  border-radius: 0 0 0 20px;
+  top: 300px;
 
   width: 220px;
   text-align: center;
   background-color: cadetblue;
+
+  .toggleCart{
+
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top: 300px;
+    background-color: cadetblue;
+    border-radius: 5px;
+    margin-left: -50px;
+    font-size: 32px;
+  }
 }
 
 
@@ -137,5 +149,24 @@ ul#bookList {
 
   40%, 60% {
     transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes magic1 {
+  0% {
+    transform: translate(calc(var(--i) * -200px),calc(var(--i) * -200px)) rotateZ(calc(var(--i) * 100deg));
+  }
+  100% {
+    transform: translate(0,0) rotateZ(0deg);
+  }
+}
+
+
+@keyframes magic2 {
+  0% {
+    transform: translate(calc(var(--i) * 200px),800px) rotateZ(-100deg);
+  }
+  100% {
+    transform: translate(0,0) rotateZ(0deg);
   }
 }

@@ -1,0 +1,46 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">
+        Informations de paiement
+    </h4>
+  </div>
+  <div class="modal-body">
+
+
+    <form id="payForm" [formGroup]="payForm"  novalidate>
+        <div class="inputPay">
+
+           <label for="creditCard"> Numéro de carte</label>
+           <input  formControlName="creditCard" type="tel">
+        </div>     
+        <div class="inputPay">
+            <label for="expirationDate">Date d'expiration</label>
+            <input formControlName="expirationDate" type="month" >
+        </div>     
+        <div class="inputPay">
+        <label for="cvc">CVC</label>
+        <input formControlName="cvc" type="tel">
+        </div>     
+
+
+    </form>
+    <iframe class="rickroll" 
+src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1"
+ frameborder="0" allowfullscreen=""></iframe>
+  </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="activeModal.dismiss('cancel')"
+      >
+        retour
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="activeModal.dismiss('cancel')"
+      >
+        Payer {{price|currency}}
+      </button>
+    </div>
+  

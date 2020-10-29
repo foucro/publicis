@@ -7,6 +7,15 @@
   font-family: "hpfont";
   src: url("./assets/fonts/HARRYP__.TTF");
 }
+@font-face {
+  font-family: "merryw";
+  src: url("./assets/fonts/Merriweather-Regular.ttf");
+}
+
+@font-face {
+  font-family: "crete";
+  src: url("./assets/fonts/CreteRound-Regular.ttf");
+}
 
 .clickable {
   cursor: pointer;
@@ -27,4 +36,6 @@ body {
   background-size: contain;
   background-repeat: repeat;
   background-position: center;
+
+  font-family: merryw;
 }
