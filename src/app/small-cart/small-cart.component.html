@@ -6,6 +6,7 @@
               {{book.nb}} x HP{{book.title| slice:12:50}}
             </li>
         </ul>
+        <button class="btn btn-dark" [routerLink]="['/panier']">Payer</button>
     </div>
     <div *ngIf="!booksInCart.length">
         Panier vide :(

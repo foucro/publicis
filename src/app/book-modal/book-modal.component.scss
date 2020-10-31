@@ -1,10 +1,23 @@
+.modal-header {
+  background: darkgray;
+  h4 {
+    margin: auto;
+  }
+}
+.bookModal {
+  display: contents;
+  background: url("../../assets/pictures/modal.png") no-repeat center center
+    fixed;
+  background-size: cover;
+}
 .modal-body {
   display: flex;
   flex-direction: row;
-   img {
+  background: lightgray;
+  img {
     height: fit-content;
     max-height: 600px;
-    margin: 50px;
+    margin: auto 50px;
   }
 
   .bookText {
@@ -19,4 +32,8 @@
 
     text-align: right;
   }
+}
+
+.modal-footer {
+  background: lightgray;
 }

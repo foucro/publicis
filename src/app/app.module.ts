@@ -16,6 +16,7 @@ import { SmallCartComponent } from './small-cart/small-cart.component';
 import { BookModalComponent } from './book-modal/book-modal.component';
 import { CartComponent } from './cart/cart.component';
 import { PayModalComponent } from './pay-modal/pay-modal.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PayModalComponent } from './pay-modal/pay-modal.component';
     SmallCartComponent,
     BookModalComponent,
     CartComponent,
-    PayModalComponent
+    PayModalComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

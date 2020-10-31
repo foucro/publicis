@@ -43,7 +43,7 @@
       <div class="bookText">
         <div class="clickable" (click)="openModal(book)">
           <h2>{{ book.title }}</h2>
-          <p title="voir plus">{{ book.synopsis.toString() | slice: 0:270 }}...</p>
+          <p title="voir plus">{{ book.synopsis.toString() | slice: 0:270 }}...<small></small></p>
         </div>
         <div class="descFoot">
           <p>{{ book.price | currency }}</p>

@@ -51,6 +51,7 @@ ul#bookList {
     box-shadow: 0px 0px 12px 7px white;
     display: flex;
     background: #9a9a3df2;
+
     &.firstime:nth-child(odd) .introAnim{
     animation:  magic1 3.5s ;
     }
@@ -62,7 +63,8 @@ ul#bookList {
       margin-top:30px;
     }
 
-    div.bookText {
+    div.bookText { 
+      .clickable:hover{text-shadow: 0 0 15px white;}
       h2{
         font-family: serif;
       }
@@ -116,7 +118,7 @@ ul#bookList {
 
   width: 220px;
   text-align: center;
-  background-color: cadetblue;
+  background-color: darkred;
 
   .toggleCart{
 
@@ -124,7 +126,7 @@ ul#bookList {
     height: 50px;
     position: fixed;
     top: 300px;
-    background-color: cadetblue;
+    background-color: darkred;
     border-radius: 5px;
     margin-left: -50px;
     font-size: 32px;

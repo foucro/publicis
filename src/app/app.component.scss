@@ -30,7 +30,8 @@
 
 #mainMenu{
 
-   // position: fixed;top: 0; right: 0;left: 0;
+    position: sticky;
+    top: 0;
  
     font-size: 2rem;
     background-color: lightgrey;
