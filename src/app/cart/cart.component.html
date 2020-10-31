@@ -17,7 +17,7 @@
       <tbody>
         <tr *ngFor="let book of booksInCart; index as i">
           <td>
-            <img [src]="book.cover" />
+            <img class="d-none d-sm-block " [src]="book.cover" />
           </td>
           <td>
             {{ book.title }}

@@ -40,7 +40,7 @@
 
     </div>
 
-      <div class="bookText">
+      <div class="bookText d-none d-sm-block" >
         <div class="clickable" (click)="openModal(book)">
           <h2>{{ book.title }}</h2>
           <p title="voir plus">{{ book.synopsis.toString() | slice: 0:270 }}...<small></small></p>
@@ -56,7 +56,7 @@
   </ul>
 </div>
 
-<aside id="miniCart" [ngClass]="{hidden:hiddenCart}">
+<aside class="d-none d-sm-block" id="miniCart" [ngClass]="{hidden:hiddenCart}">
   <div (click)="hiddenCart=!hiddenCart" class=" toggleCart">
     <fa-icon *ngIf="hiddenCart" [icon]="['fas','shopping-cart']" ></fa-icon>
     <fa-icon  *ngIf="!hiddenCart" [icon]="['fas','chevron-right']" ></fa-icon>

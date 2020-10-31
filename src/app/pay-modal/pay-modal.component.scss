@@ -1,6 +1,6 @@
 .rickroll {
   height: 0;
-  width: 620px;
+  width: 34rem;
   margin: auto;
 
   display: block;
@@ -13,13 +13,13 @@
   font-size: 2rem;
 }
 #payForm {
-  animation: 2s ease-in-out 2.5s fadeOut forwards;
+ animation: 2s ease-in-out 2.5s fadeOut forwards;
 }
 .inputPay {
   margin: 10px auto;
-  width: 500px;
+  width: 30rem;
   label {
-    width: 200px;
+    width: 12rem;
   }
 }
 
@@ -38,6 +38,6 @@
   }
   100% {
     opacity: 1;
-    height: 510px;
+    height: 27rem;
   }
 }

@@ -46,7 +46,8 @@ ul#bookList {
 
   li.bookpres {
     height: fit-content;
-    margin: 60px 40px;
+    width: fit-content;
+    margin: 60px auto;
     text-align: justify;
     box-shadow: 0px 0px 12px 7px white;
     display: flex;
@@ -133,6 +134,11 @@ ul#bookList {
   }
 }
 
+//phone
+@media (max-width: 575.98px) { 
+
+
+}
 
 
 
