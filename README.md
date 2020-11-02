@@ -11,11 +11,15 @@ Features présentes
 * Recherche par titre
 * Page panier avec calcul de la promotion
 * Clear du panier
-
 * Responsive design pour téléphone
+
 
 Commandes de déploiement
 -----------------------
+
+### update dependencies
+
+Run `npm install` to be sure to download all needed dependencies.
 
 ### Development server
 
@@ -25,6 +29,3 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-### Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).

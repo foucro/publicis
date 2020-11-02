@@ -1,4 +1,4 @@
-import {  ComponentFixture, TestBed } from '@angular/core/testing';
+import {  ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 
 import { MainPageComponent } from './main-page.component';
 import { Book } from '../model/book';
@@ -60,17 +60,16 @@ describe('MainPageComponent', () => {
     component.addToCart(books[1]);
   });
 
-  it('should filter on book title', () => {
-    component['filterTitle']('hp');
-
-    expect(component.booksdisplay.length).toBe(2);
-    component['filterTitle']('p2');
-
+  it('should filter on book title', fakeAsync(() => {
+    component.typesearch$.next('p2')
+    tick(222)
+    expect(component.booksdisplay[0]).toEqual(books[1]);
     expect(component.booksdisplay.length).toBe(1);
-    component['filterTitle']('');
 
+    component.typesearch$.next('')
+    tick(222)
     expect(component.booksdisplay.length).toBe(2,'if empty show all');
-  });
+  }));
 
   it('should add a book to cart', () => {
     bookservice.saveCart = (x) => {};

@@ -83,32 +83,30 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // observable lié a la recherche
-    this.typesearch$
-      .pipe(debounceTime(200), distinctUntilChanged())
-      .subscribe(this.filterTitle);
-
-    this.navId = this.location.getState()
-      ? this.location.getState()['navigationId']
-      : 0;
-
     // récupération de tous les livres
     this.bookServ
       .getBooks()
       .subscribe((books: Book[]) => (this.books = this.booksdisplay = books));
 
     this.booksInCart = this.bookServ.getBooksInCart();
+    // observable lié a la recherche
+    this.typesearch$
+      .pipe(debounceTime(200), distinctUntilChanged())
+      .subscribe((sfilter: string)=>{
+        this.anim = false;
+        this.booksdisplay =
+          sfilter.length === 0
+            ? this.books
+            : this.books.filter(
+                (v: Book) =>
+                  v.title.toLowerCase().indexOf(sfilter.toLowerCase()) > -1
+              );
+      });
+
+    this.navId = this.location.getState()
+      ? this.location.getState()['navigationId']
+      : 0;
+
   }
 
-  // methode de filtre sur les titres
-  private filterTitle(sfilter: string): void {
-    this.anim = false;
-    this.booksdisplay =
-      sfilter.length === 0
-        ? this.books
-        : this.books.filter(
-            (v: Book) =>
-              v.title.toLowerCase().indexOf(sfilter.toLowerCase()) > -1
-          );
-  }
 }
