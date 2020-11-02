@@ -5,7 +5,7 @@
   }
   h1 {
     text-align: center;
-    color:white;
+    color: white;
     text-shadow: 0 0 4px white;
   }
   div#reset {
@@ -26,7 +26,7 @@
   }
 
   .searchMessage {
-    color:white;
+    color: white;
     font-size: 1.4rem;
     color: #f7ca44;
     margin-top: 20px;
@@ -35,9 +35,6 @@
     }
   }
 }
-
-
-
 
 ul#bookList {
   list-style-type: none;
@@ -53,20 +50,21 @@ ul#bookList {
     display: flex;
     background: #9a9a3df2;
 
-    &.firstime:nth-child(odd) .introAnim{
-    animation:  magic1 3.5s ;
+    &.firstime:nth-child(odd) .introAnim {
+      animation: magic1 3.5s;
     }
     &.firstime:nth-child(even) .introAnim {
-      
-    animation: magic2 4s ;
+      animation: magic2 4s;
     }
-    &:first-child{
-      margin-top:30px;
+    &:first-child {
+      margin-top: 30px;
     }
 
-    div.bookText { 
-      .clickable:hover{text-shadow: 0 0 15px white;}
-      h2{
+    div.bookText {
+      .clickable:hover {
+        text-shadow: 0 0 15px white;
+      }
+      h2 {
         font-family: serif;
       }
       padding: 20px;
@@ -85,18 +83,16 @@ ul#bookList {
           margin-left: 9rem;
           background-color: darkblue;
           color: white;
-      
         }
       }
     }
 
     img {
-      
-    height: inherit;
-    max-height: 248px;
-    margin: auto;
+      height: inherit;
+      max-height: 248px;
+      margin: auto;
       &:hover {
-        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both ; 
+        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         transform: translate3d(0, 0, 0);
         backface-visibility: hidden;
         perspective: 1000px;
@@ -108,8 +104,8 @@ ul#bookList {
 #miniCart {
   transition: ease-in-out 0.7s;
 
-  &.hidden{
-    right:-220px
+  &.hidden {
+    right: -220px;
   }
   position: fixed;
   right: 0;
@@ -121,8 +117,7 @@ ul#bookList {
   text-align: center;
   background-color: darkred;
 
-  .toggleCart{
-
+  .toggleCart {
     width: 50px;
     height: 50px;
     position: fixed;
@@ -135,46 +130,47 @@ ul#bookList {
 }
 
 //phone
-@media (max-width: 575.98px) { 
-
-
+@media (max-width: 575.98px) {
 }
 
-
-
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-1px, 0, 0);
   }
-  
-  20%, 80% {
+
+  20%,
+  80% {
     transform: translate3d(2px, 0, 0);
   }
 
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-4px, 0, 0);
   }
 
-  40%, 60% {
+  40%,
+  60% {
     transform: translate3d(4px, 0, 0);
   }
 }
 
 @keyframes magic1 {
   0% {
-    transform: translate(calc(var(--i) * -200px),calc(var(--i) * -200px)) rotateZ(calc(var(--i) * 100deg));
+    transform: translate(calc(var(--i) * -200px), calc(var(--i) * -200px))
+      rotateZ(calc(var(--i) * 100deg));
   }
   100% {
-    transform: translate(0,0) rotateZ(0deg);
+    transform: translate(0, 0) rotateZ(0deg);
   }
 }
 
-
 @keyframes magic2 {
   0% {
-    transform: translate(calc(var(--i) * 200px),800px) rotateZ(-100deg);
+    transform: translate(calc(var(--i) * 200px), 800px) rotateZ(-100deg);
   }
   100% {
-    transform: translate(0,0) rotateZ(0deg);
+    transform: translate(0, 0) rotateZ(0deg);
   }
 }

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PayModalComponent } from './pay-modal.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('PayModalComponent', () => {
   let component: PayModalComponent;
@@ -8,7 +10,9 @@ describe('PayModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PayModalComponent ]
+      declarations: [ PayModalComponent ],
+      providers: [NgbActiveModal,FormBuilder],
+      imports:[FormsModule,ReactiveFormsModule]
     })
     .compileComponents();
   }));

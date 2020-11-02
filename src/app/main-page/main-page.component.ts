@@ -14,28 +14,31 @@ import { BookModalComponent } from '../book-modal/book-modal.component';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit, OnDestroy {
-  //L'ensemble des livres
+  // L'ensemble des livres
   books: Book[];
-  //Livres à afficher
+  // Livres à afficher
   booksdisplay: Book[];
-  //Livres dans le panier
+  // Livres dans le panier
   booksInCart: Book[] = [];
-  //Text de la zone de rechch
-  searchTxt: string = '';
-  //Observe les modifications du champ de rechch
+  // Text de la zone de rechch
+  searchTxt = '';
+  // Observe les modifications du champ de rechch
   typesearch$ = new Subject<string>();
-  //la notif menu
+  // la notif menu
   notifCart$ = new Subject<number>();
 
-  //Pour gérer lanimation
+  // Pour gérer lanimation
   navId: number;
   anim = true;
-  hiddenCart=true
+  hiddenCart = true;
 
+  constructor(
+    private modalServ: NgbModal,
+    private location: Location,
+    private bookServ: BookService
+  ) {}
 
-  constructor(private modalServ: NgbModal,private location:Location, private bookServ: BookService) {}
-
-  public addToCart(book: Book) {
+  public addToCart(book: Book): void {
     const i = this.booksInCart.findIndex((x) => x.isbn == book.isbn);
     if (-1 === i) {
       book.nb = 1;
@@ -46,15 +49,16 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
     this.bookServ.saveCart(this.booksInCart);
     this.notifCart$.next(this.getCartSize());
-
   }
 
-  private getCartSize(): number{
-    if(!this.booksInCart?.length)return 0;
-    return this.booksInCart.map(x=>x.nb).reduce((a,b)=>a+b)
+  // Nombre total de livres dans le panier
+  private getCartSize(): number {
+    if (!this.booksInCart?.length) return 0;
+    return this.booksInCart.map((x) => x.nb).reduce((a, b) => a + b);
   }
-  
-  public openModal(book: Book) {
+
+  // modal avec description longue
+  public openModal(book: Book): void {
     const modal = this.modalServ.open(BookModalComponent, {
       scrollable: true,
       size: 'xl',
@@ -62,14 +66,14 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
     modal.componentInstance.book = book;
 
-    //fermeture de la modal
+    // fermeture de la modal
     modal.result.then(
       (x: Book) => this.addToCart(x),
-      (err) => console.info('modal close', err)
+      (err) => {}
     );
   }
 
-  public clearSearch() {
+  public clearSearch(): void {
     this.searchTxt = '';
     this.typesearch$.next('');
   }
@@ -79,32 +83,32 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
-    //Filtre lié a la recherche
+    // observable lié a la recherche
     this.typesearch$
       .pipe(debounceTime(200), distinctUntilChanged())
-      .subscribe(
-        (sfilter: string) =>{
-          this.anim=false;
-          (this.booksdisplay = sfilter.length === 0 ? 
-            this.books : this.books.filter(
-                  (v: Book) =>  v.title.toLowerCase().indexOf(sfilter.toLowerCase()) > -1
-                ))}
-      );
+      .subscribe(this.filterTitle);
 
+    this.navId = this.location.getState()
+      ? this.location.getState()['navigationId']
+      : 0;
 
-    this.navId = this.location.getState()['navigationId'];
-
-    //récupération de tous les livres
+    // récupération de tous les livres
     this.bookServ
       .getBooks()
-      .subscribe((books: Book[]) => 
-        (this.books = this.booksdisplay = books));
+      .subscribe((books: Book[]) => (this.books = this.booksdisplay = books));
 
     this.booksInCart = this.bookServ.getBooksInCart();
-    this.notifCart$.next(this.getCartSize());
-    
-   
   }
 
+  // methode de filtre sur les titres
+  private filterTitle(sfilter: string): void {
+    this.anim = false;
+    this.booksdisplay =
+      sfilter.length === 0
+        ? this.books
+        : this.books.filter(
+            (v: Book) =>
+              v.title.toLowerCase().indexOf(sfilter.toLowerCase()) > -1
+          );
+  }
 }

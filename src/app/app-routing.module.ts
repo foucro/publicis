@@ -5,24 +5,22 @@ import { CartComponent } from './cart/cart.component';
 import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
-
   {
     path: 'main',
-    component: MainPageComponent
+    component: MainPageComponent,
   },
   {
     path: 'panier',
-    component: CartComponent
+    component: CartComponent,
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
   },
   {
     path: '**',
-    redirectTo:'main'
+    redirectTo: 'main',
   },
-
 ];
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -31,7 +29,7 @@ const routerOptions: ExtraOptions = {
 };
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,routerOptions)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, routerOptions)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

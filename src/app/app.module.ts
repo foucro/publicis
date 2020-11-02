@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule,FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faChevronRight,faShoppingCart} from '@fortawesome/free-solid-svg-icons';
-import { CreditCardDirectivesModule } from 'angular-cc-library';
 
 
 import { AppComponent } from './app.component';
@@ -35,8 +34,7 @@ import { AboutComponent } from './about/about.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule,
-    CreditCardDirectivesModule
+    FontAwesomeModule
   ],
   providers: [{provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'}],
   bootstrap: [AppComponent]

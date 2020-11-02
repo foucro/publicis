@@ -13,12 +13,14 @@
     </div>
 
     <div *ngIf="searchTxt" class="searchMessage">
-     <span *ngIf="booksdisplay.length!=0">
-      Résultats pour la recherche "<em>{{ searchTxt }}</em>"
-     </span> 
-     <span *ngIf="booksdisplay.length==0">
-       Aucun résultat pour la recherche"<em>{{ searchTxt }}</em>"
-     </span> 
+      <span *ngIf="booksdisplay.length != 0">
+        Résultats pour la recherche "<em>{{ searchTxt }}</em
+        >"
+      </span>
+      <span *ngIf="booksdisplay.length == 0">
+        Aucun résultat pour la recherche"<em>{{ searchTxt }}</em
+        >"
+      </span>
     </div>
   </div>
 
@@ -29,21 +31,21 @@
       *ngFor="let book of booksdisplay; index as i"
       style="--i:{{ i + 1 }}"
     >
-    <div class="introAnim">
+      <div class="introAnim">
+        <img
+          class="clickable"
+          src="{{ book.cover }}"
+          alt="{{ book.title }} cover"
+          (click)="openModal(book)"
+        />
+      </div>
 
-      <img
-        class="clickable"
-        src="{{ book.cover }}"
-        alt="{{ book.title }} cover"
-        (click)="openModal(book)"
-      />
-
-    </div>
-
-      <div class="bookText d-none d-sm-block" >
+      <div class="bookText d-none d-sm-block">
         <div class="clickable" (click)="openModal(book)">
           <h2>{{ book.title }}</h2>
-          <p title="voir plus">{{ book.synopsis.toString() | slice: 0:270 }}...<small></small></p>
+          <p title="voir plus">
+            {{ book.synopsis.toString() | slice: 0:270 }}...<small></small>
+          </p>
         </div>
         <div class="descFoot">
           <p>{{ book.price | currency }}</p>
@@ -56,10 +58,14 @@
   </ul>
 </div>
 
-<aside class="d-none d-sm-block" id="miniCart" [ngClass]="{hidden:hiddenCart}">
-  <div (click)="hiddenCart=!hiddenCart" class=" toggleCart">
-    <fa-icon *ngIf="hiddenCart" [icon]="['fas','shopping-cart']" ></fa-icon>
-    <fa-icon  *ngIf="!hiddenCart" [icon]="['fas','chevron-right']" ></fa-icon>
+<aside
+  class="d-none d-sm-block"
+  id="miniCart"
+  [ngClass]="{ hidden: hiddenCart }"
+>
+  <div (click)="hiddenCart = !hiddenCart" class="toggleCart">
+    <fa-icon *ngIf="hiddenCart" [icon]="['fas', 'shopping-cart']"></fa-icon>
+    <fa-icon *ngIf="!hiddenCart" [icon]="['fas', 'chevron-right']"></fa-icon>
   </div>
   <app-small-cart [booksInCart]="booksInCart"></app-small-cart>
 </aside>

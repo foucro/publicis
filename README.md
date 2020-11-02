@@ -8,12 +8,11 @@ Features présentes
 
 * Présentation des livres diponibles
 * Description longue au clic
-* Visualisation d'un encart panier
 * Recherche par titre
 * Page panier avec calcul de la promotion
 * Clear du panier
 
-* Responsive design
+* Responsive design pour téléphone
 
 Commandes de déploiement
 -----------------------

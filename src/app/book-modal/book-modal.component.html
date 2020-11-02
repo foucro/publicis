@@ -1,30 +1,31 @@
-  <div class="modal-header">
+<div class="modal-header">
   <h4 class="modal-title" id="modal-title">{{ book.title }}</h4>
 </div>
 <div class="modal-body">
-  <img class="d-none d-sm-block"
+  <img
+    class="d-none d-sm-block"
     src="{{ book.cover }}"
     alt="{{ book.title }} cover"
   />
 
   <div class="bookText">
-      <p  *ngFor="let par of book.synopsis">{{ par }}</p>
-      <div class="price">{{book.price | currency}}</div>
+    <p *ngFor="let par of book.synopsis">{{ par }}</p>
+    <div class="price">{{ book.price | currency }}</div>
   </div>
 </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-secondary"
-      (click)="activeModal.dismiss('cancel')"
-    >
-      retour
-    </button>
-    <button
-      type="button"
-      class="btn btn-primary"
-      (click)="activeModal.close(book)"
-    >
-      Ajouter au panier
-    </button>
-  </div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="activeModal.dismiss('cancel')"
+  >
+    retour
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="activeModal.close(book)"
+  >
+    Ajouter au panier
+  </button>
+</div>
